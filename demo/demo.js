@@ -1,12 +1,14 @@
-import { VideoDateRangeMonitor, MonitorEvents } from "../index.ts";
+import { VideoDateRangeMonitor } from "../index.ts";
 import Hls from "hls.js";
 
 const channelEngineHlsStream = "https://demo.vc.eyevinn.technology/channels/adtest/master.m3u8";
 
-const videoDateRangeMonitor = new VideoDateRangeMonitor();
-videoDateRangeMonitor.on(MonitorEvents.ALL, (event, data) => {
-  console.log(`[DEMO] ${event}:`, data);
-});
+function inStreamDataHandler(data) {
+  console.log(`[DEMO] in stream data:`, data);
+}
+
+const videoDateRangeMonitor = new VideoDateRangeMonitor(inStreamDataHandler);
+
 let videoElement;
 
 document.addEventListener("DOMContentLoaded", () => {

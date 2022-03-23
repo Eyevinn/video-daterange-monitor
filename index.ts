@@ -1,19 +1,12 @@
 import Hls, { Events, FragChangedData } from "hls.js";
-import { EmitterBaseClass } from "./lib/EmitterBaseClass";
 
-export enum MonitorEvents {
-  ALL = "*",
-  DATA_RECEIVED = "data_received",
-  DATA_TRIGGERED = "data_triggered",
-}
-
-export class VideoDateRangeMonitor extends EmitterBaseClass {
+export class VideoDateRangeMonitor {
   private playerEngine?: HTMLVideoElement | Hls;
   private checkInStreamMetaDataReference?: () => void;
 
-  constructor() {
-    super();
-  }
+  constructor(
+    private inStreamDataHandler: (data: Record<string, any>) => void
+  ) {}
 
   public monitor(playerEngine) {
     this.destroy();
@@ -54,7 +47,7 @@ export class VideoDateRangeMonitor extends EmitterBaseClass {
             payload[cueValue.key] = cueValue.data;
             if (!cueValue) return;
           }
-          this.emit(MonitorEvents.DATA_RECEIVED, { ...payload });
+          this.inStreamDataHandler(payload);
         }
       });
     }
@@ -77,7 +70,7 @@ export class VideoDateRangeMonitor extends EmitterBaseClass {
           const value = infoSplit[1].replace(/"/g, "");
           payload[key] = value;
         });
-        this.emit(MonitorEvents.DATA_RECEIVED, { ...payload });
+        this.inStreamDataHandler(payload);
       }
     });
   }
