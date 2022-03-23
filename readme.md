@@ -9,7 +9,7 @@ Emits daterange data when exposed in the hls stream
 import { VideoDateRangeMonitor, MonitorEvents } from "@eyevinn/video-daterange-monitor";
 
 const videoElement = document.querySelector("video");
-const VideoDateRangeMonitor = new VideoQualityMonitor(videoElement, handler);
+const videoDateRangeMonitor = new VideoDateRangeMonitor();
 videoDateRangeMonitor.on(MonitorEvents.ALL, (event, data) => {
   console.log(`[Daterange] ${event}:`, data);
 });
