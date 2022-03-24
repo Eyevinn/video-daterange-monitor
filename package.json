@@ -23,8 +23,7 @@
   },
   "homepage": "https://github.com/Eyevinn/video-daterange-monitor#readme",
   "dependencies": {
-    "hls.js": "^1.1.5",
-    "mitt": "^3.0.0"
+    "hls.js": "^1.1.5"
   },
   "devDependencies": {
     "@parcel/packager-ts": "^2.3.2",

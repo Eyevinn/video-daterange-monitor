@@ -1,7 +1,7 @@
 Video Daterange Monitor
 ===
 
-Emits daterange data when exposed in the hls stream
+Report daterange data into sent in callback, when exposed in the hls stream
 
 ## Usage
 
@@ -9,10 +9,13 @@ Emits daterange data when exposed in the hls stream
 import { VideoDateRangeMonitor, MonitorEvents } from "@eyevinn/video-daterange-monitor";
 
 const videoElement = document.querySelector("video");
-const videoDateRangeMonitor = new VideoDateRangeMonitor();
-videoDateRangeMonitor.on(MonitorEvents.ALL, (event, data) => {
-  console.log(`[Daterange] ${event}:`, data);
-});
+
+function inStreamDataHandler(data) {
+  console.log(`[DEMO] in stream data:`, data);
+}
+
+const videoDateRangeMonitor = new VideoDateRangeMonitor(inStreamDataHandler);
+
 videoDateRangeMonitor.monitor(videoElement);
 ```
 
