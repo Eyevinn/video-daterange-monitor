@@ -6,7 +6,7 @@ Report daterange data into sent in callback, when exposed in the hls stream
 ## Usage
 
 ```js
-import { VideoDateRangeMonitor, MonitorEvents } from "@eyevinn/video-daterange-monitor";
+import { VideoDateRangeMonitor } from "@eyevinn/video-daterange-monitor";
 
 const videoElement = document.querySelector("video");
 
